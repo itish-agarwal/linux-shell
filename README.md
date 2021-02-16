@@ -9,3 +9,16 @@ on top of the Linux kernel.
 2. Run the command: `./shell` which will run the shell. 
 3. Type `exit` or `quit` to exit the shell
 4. Run `make clean` to remove all the executable files 
+
+### Functionalities 
+- Builtin commands: `ls [al]`, `echo`, `cd`, `quit`, etc.
+- Piping and redirection
+- Interrupt handling for signals like `SIGINT` and `SIGTSTP`
+- Command line shows username and the present working directory
+
+### Limitations
+- History and <kbd>up</kbd> arrow command recall access 
+- <kbd>tab</kbd> completion
+- Aliasing
+
+just to name a few(it is as basic as it gets).....
