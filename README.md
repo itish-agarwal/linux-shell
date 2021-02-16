@@ -19,8 +19,8 @@ on top of the Linux kernel.
 - Command line shows username and the present working directory
 
 ### Limitations
-- History and <kbd>up</kbd> arrow command recall access 
-- <kbd>tab</kbd> completion
+- Support for quoting and escape sequences
+- Environment variables
 - Aliasing
 
 just to name a few(it is as basic as it gets).....
