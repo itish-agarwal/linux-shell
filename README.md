@@ -14,6 +14,8 @@ on top of the Linux kernel.
 - Builtin commands: `ls [al]`, `echo`, `cd`, `quit`, etc.
 - Piping and redirection
 - Interrupt handling for signals like `SIGINT` and `SIGTSTP`
+- History and <kbd>up</kbd> arrow command recall acess
+- <kbd>tab</kbd> completion for recent commands
 - Command line shows username and the present working directory
 
 ### Limitations
