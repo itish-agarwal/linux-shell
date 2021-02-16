@@ -23,12 +23,12 @@ using namespace std;
 
 //Print the help manual
 void help() {
-	printf(ANSI_CYAN"\n\t\t\t  OS ASSIGNMENT 2 SHELL\n\n");  
-	printf("Created By : Aditya Singh (18CS30005)\n             Itish Agarwal (18CS30021)\n\n");
-	printf("Type parts and press enter to execute them\n\n");
+  printf(ANSI_CYAN"\n\t\t\t  OS ASSIGNMENT 2 SHELL\n\n");  
+  printf("Created By : Aditya Singh (18CS30005)\n             Itish Agarwal (18CS30021)\n\n");
+  printf("Type parts and press enter to execute them\n\n");
   printf(ANSI_DEFAULT);
-	printf("'help'                            Opens the help manual\n");
-	printf("'quit' or 'q'                     Exits the shell\n");
+  printf("'help'                            Opens the help manual\n");
+  printf("'quit' or 'q'                     Exits the shell\n");
   printf("'./executable'                    To run an exectubale file\n");
   printf("'./exectubale < infile.txt'       To run an executable with input taken from input.txt\n");
   printf("'./exectubale < outfile.txt'      To run an executable with output put into input.txt\n");
