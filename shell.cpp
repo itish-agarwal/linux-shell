@@ -94,7 +94,6 @@ vector<string> checkRedirection(string s){
   // a or a > c   case
   if(parts1.size() == 1){
     vector<string> parts2 = splitString(s , '>');
-    
     // a case
     if(parts2.size() == 1){
       ans[0] = trim(parts2[0]);
@@ -111,7 +110,6 @@ vector<string> checkRedirection(string s){
   // a < b  or  a < b > c   case
   else{
     vector<string> parts3 = splitString(parts1[1] , '>'); //parts1[1] is    b or b > c
-
     // a < b case
     if(parts3.size()==1){
       ans[1] = trim(parts3[0]);
@@ -135,17 +133,14 @@ vector<string> checkRedirection(string s){
 
 int execute(string command){
   vector<string> arr , parts = splitString(command , ' ');
-
   for(auto & here: parts){
     if(parts.size()>0){
       arr.push_back(here);
     }
   }
-
   int n = arr.size();
   char * arg[n+1]; // 1 more to accomodate NULL at the end
-  arg[n]=NULL;
-  
+  arg[n]=NULL;  
   for(int i=0;i<n;i++){
     const char *c = arr[i].c_str();     // .c_str converts a c++ string object to const char* pointer
     arg[i] = const_cast<char*>(c);      // const_cast is a casting operator
@@ -168,7 +163,6 @@ int shell_loop() {
     string cmd;
     char *buffer;
     bool bg_status = false;
-        
     // get current working directory
     char cwd[1000];
     getcwd(cwd, sizeof(cwd)); 
@@ -176,7 +170,6 @@ int shell_loop() {
     username = getenv("USER");
     char hostname[1000];
     gethostname(hostname, 1+1000);
-
     
     string dislpay_prompt = ANSI_GREEN_BOLD + (string)username + ANSI_DEFAULT + " @ " + ANSI_YELLOW_BOLD + (string)cwd + ANSI_DEFAULT + " $ ";
     dislpay_prompt += "";
@@ -196,7 +189,6 @@ int shell_loop() {
     }
     // Split into several parts wrt to |
     vector<string> commands = splitString(cmd, '|');
-
     // If no pipes are required
     if((int)commands.size()==1) {
       // Split the parts and redirection
@@ -234,43 +226,35 @@ int shell_loop() {
     else {
       int n = commands.size(); 
       int new_file_desc[2], old_file_desc[2];
-
       for(int i=0; i<n; i++) {
         vector<string> parts = checkRedirection(commands[i]);
         if(i!=n-1){                 // Create new pipes (except for the last command)
           int s = pipe(new_file_desc);
         }
-
         // In the child process
         if(fork() == 0) {
           if( !i || i==n-1 ) {
             OpenAndRedirect(parts[1], parts[2]); 
           }
-
           // Read from previous command for everything except the first command
           if(i) {
             dup2(old_file_desc[0],0), close(old_file_desc[0]), close(old_file_desc[1]);
           }
-
           // Write into pipe for everything except last command
           if(i != n-1) {
             close(new_file_desc[0]), dup2(new_file_desc[1],1), close(new_file_desc[1]);
           }
-
           // Execute command
           execute(parts[0]);
         }
-
         if(i) {
           close(old_file_desc[0]), close(old_file_desc[1]);
         }
-        
         // copy new_file_desc into old_file_desc for everything except the last process
         if(i!=n-1) {
           old_file_desc[0] = new_file_desc[0], old_file_desc[1] = new_file_desc[1];
         }
       }
-
       // If no background, then wait for all child processes to return before the parent can start to execute another process
       if(!bg_status) {
         while( wait(NULL) > 0);
@@ -283,13 +267,9 @@ int main() {
 
   using_history();
   printf(ANSI_RED_BOLD "\n\t\t[[ Welcome to OS ASSIGNMENT 2 LINUX SHELL ]]\t\n" ANSI_DEFAULT);
-  
   printf(ANSI_YELLOW"\nOS Assignment 2 - Implementation of command-line interpreter running on top of Linux kernel\n");
-  
   printf("        This is a shell created as part of the Operating Systems Lab Assignment 2\n");
-  
   printf("               Type 'help' for a guided manual on how to get started\n\n");
-
   printf("                        Type 'exit' to exit the shell\n\n" ANSI_DEFAULT);
     
   int status = 1;
